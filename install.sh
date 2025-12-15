@@ -11,7 +11,7 @@ mkdir -p $HOME/bin
 if command -v brew >/dev/null 2>&1; then
     brew install starship
 else
-    wget https://starship.rs/install.sh -O $workdir/starship_install.sh
+    wget -q https://starship.rs/install.sh -O $workdir/starship_install.sh
     sh $workdir/starship_install.sh -b $HOME/bin -y
 fi
 mkdir -p $HOME/.config && echo "command_timeout = 2000" > $HOME/.config/starship.toml
@@ -19,11 +19,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 
 # .zshrc setting
 if [ -e $HOME/.zshrc ]; then mv $HOME/.zshrc $HOME/.zshrc.bkup; fi
-wget https://raw.githubusercontent.com/MasaYan24/zshrc/main/.zshrc -O $HOME/.zshrc
+wget -q https://raw.githubusercontent.com/MasaYan24/zshrc/main/.zshrc -O $HOME/.zshrc
 
 # Developing tool
 # installer=$workdir/miniconda_install.sh
-# wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $installer \
+# wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $installer \
 #     && sh $installer -b -p $HOME/.miniconda
 # $HOME/.miniconda/bin/conda config --set auto_activate_base False
 # $HOME/.miniconda/bin/conda config --add channels conda-forge
@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/MasaYan24/zshrc/main/.zshrc -O $HOME/.zsh
 # grep -qxF 'export PATH=$HOME/.miniconda/bin:$PATH' $HOME/.zshrc || echo 'export PATH=$HOME/.miniconda/bin:$PATH' >> $HOME/.zshrc
 installer=$workdir/miniforge_install.sh
 install_dir=$HOME/.miniconda
-wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" -O $installer \
+wget -q "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" -O $installer \
     && bash $installer -b -p $install_dir
 $install_dir/bin/conda config --set auto_activate False
 $install_dir/bin/conda config --show channels
